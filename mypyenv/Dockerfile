@@ -2,7 +2,7 @@ FROM kyobad/anaconda3-alpine
 
 MAINTAINER K.Kato
 
-RUN conda install -y seaborn psycopg2 \
+RUN conda install -y seaborn psycopg2 networkx\
 && pip install chainer \
 && conda install -y -c https://conda.anaconda.org/andrewannex spiceypy
 
