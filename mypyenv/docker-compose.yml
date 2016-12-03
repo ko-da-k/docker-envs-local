@@ -17,7 +17,7 @@ services:
         container_name:
             postgres-db
         volumes:
-            - ./postgres-db:/var/lib/postgresql/data
+            - ./db/postgres-data:/var/lib/postgresql/
     python:
         build: .
         volumes:
