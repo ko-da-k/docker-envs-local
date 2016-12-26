@@ -17,8 +17,12 @@ services:
         container_name:
             postgres-db
         volumes:
+<<<<<<< HEAD
             - ./postgres-db:/var/lib/postgresql/data
             - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+=======
+            - ./db/postgres-data:/var/lib/postgresql/
+>>>>>>> aba7ccc9e65bc2a2bb7dc5e8d9dbd222df792acd
     python:
         build: .
         volumes:
