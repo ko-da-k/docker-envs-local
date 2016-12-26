@@ -18,10 +18,11 @@ services:
             postgres-db
         volumes:
             - ./postgres-db:/var/lib/postgresql/data
+            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     python:
         build: .
         volumes:
-            - ./notebook:/root/notebook/
+            - ./workdir:/root/notebook/
         ports:
             - "8888:8888"
         links:
