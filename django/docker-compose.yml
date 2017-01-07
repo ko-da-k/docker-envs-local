@@ -1,23 +1,26 @@
 version: '2'
 services:
-    db:
+    django_db:
         image:
-            mysql
-        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+            postgres
         environment:
-            - MYSQL_ROOT_PASSWORD=secret
-            - MYSQL_DATABASE=django_db
-            - MYSQL_USER=django
-            - MYSQL_PASSWORD=secret
+            POSTGRES_USER:
+                django
+            POSTGRES_PASSWORD:
+                password
+            POSTGRES_DB:
+                app
+        ports:
+            - "5432"
         volumes:
-            - ./django-db:/var/lib/mysql/
+            - ./postgres-db:/var/lib/postgresql/data
             - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     django:
         build: .
         command: python manage.py runserver 0.0.0.0:8000
         volumes:
-            - .app:/home/worker
+            - ./app:/home/worker
         ports:
             - "8000:8000"
         depends_on:
-            - db
+            - django_db
