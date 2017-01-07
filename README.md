@@ -28,5 +28,8 @@ redmine server
 django is a Web Framework
 
 ### HOW TO
+#### make project
+``docker-compose run django django-admin startproject projectname ./app``
+#### run server
 ``docker-compose up``
 ``localhost:5000``
