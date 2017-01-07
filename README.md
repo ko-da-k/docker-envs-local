@@ -21,3 +21,12 @@ ref:http://zashikiro.hateblo.jp/entry/2016/08/15/224612
 redmine server
 
 #### HOW TO
+``docker-compose up``
+``localhost:8080``
+
+## django
+django is a Web Framework
+
+### HOW TO
+``docker-compose up``
+``localhost:5000``

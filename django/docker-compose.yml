@@ -1,0 +1,24 @@
+version: '2'
+services:
+    db:
+        image:
+            mysql
+        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+        environment:
+            - MYSQL_ROOT_PASSWORD=secret
+            - MYSQL_DATABASE=django_db
+            - MYSQL_USER=django
+            - MYSQL_PASSWORD=secret
+        volumes:
+            - ./django-db:/var/lib/mysql/
+            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    web:
+        build: .
+        command:
+            evaluation-project/bin/cake server -H 0.0.0.0
+        volumes:
+            - .:/home/worker
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
