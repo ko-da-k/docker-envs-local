@@ -12,8 +12,9 @@ services:
         volumes:
             - ./django-db:/var/lib/mysql/
             - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-    web:
+    django:
         build: .
+        command: python manage.py runserver 0.0.0.0:8000
         volumes:
             - .app:/home/worker
         ports:
