@@ -6,7 +6,7 @@ services:
     ports:
       - 8080:3000
     environment:
-      REDMINE_DB_MYSQL: mysql_db
+      REDMINE_DB_MYSQL: db
       REDMINE_DB_PASSWORD: example
     volumes:
         - ./redmine-data/redmine:/usr/src/redmine/files
@@ -14,12 +14,12 @@ services:
       - mysql_db
     restart: always
 
-  mysql_db:
+  db:
     image: mysql
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: redmine
+      MYSQL_DATABASE: redmine_db
     volumes:
         - ./redmine-data/db:/var/lib/mysql
     restart: always
