@@ -11,7 +11,7 @@ services:
     volumes:
         - ./redmine-data/redmine:/usr/src/redmine/files
     depends_on:
-      - mysql_db
+      - db
     restart: always
 
   db:
