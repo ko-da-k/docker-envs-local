@@ -7,6 +7,9 @@ This repository contains my local docker images
 
 #### HOW TO
 ``docker-compose up``
+
+and access
+
 ``localhost:8888``
 
 ## cakephp
@@ -15,6 +18,9 @@ ref:http://zashikiro.hateblo.jp/entry/2016/08/15/224612
 
 #### HOW TO
 ``docker-compose up``
+
+and access
+
 ``localhost:8765``
 
 ## redmine
@@ -22,6 +28,9 @@ redmine server
 
 #### HOW TO
 ``docker-compose up``
+
+and access
+
 ``localhost:8080``
 
 ## django
@@ -32,4 +41,7 @@ django is a Web Framework
 ``docker-compose run django django-admin startproject projectname .``
 #### run server
 ``docker-compose up``
+
+and access
+
 ``localhost:5000``
