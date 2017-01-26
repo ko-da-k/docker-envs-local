@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  wordpress:
+    image: wordpress
+    ports:
+      - "8800:80"
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306 
+      WORDPRESS_DB_PASSWORD: password
+      
+  db:
+    image: mysql
+    ports:
+      - "3306"
+    volumes:
+        - ./mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: password
+      
