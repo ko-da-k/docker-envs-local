@@ -1,26 +1,30 @@
 version: '2'
 services:
-    django_db:
-        image:
-            postgres
-        environment:
-            POSTGRES_USER:
-                django
-            POSTGRES_PASSWORD:
-                password
-            POSTGRES_DB:
-                app
-        ports:
-            - "5432"
-        volumes:
-            - ./postgres-db:/var/lib/postgresql/data
-            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-    django:
-        build: .
-        command: python manage.py runserver 0.0.0.0:8000
-        volumes:
-            - ./app:/home/worker
-        ports:
-            - "8000:8000"
-        depends_on:
-            - django_db
+  db:
+    image:
+      postgres
+    environment:
+      POSTGRES_USER:
+        django
+      POSTGRES_PASSWORD:
+        password
+      POSTGRES_DB:
+        app_db
+    ports:
+      - "5432"
+    volumes:
+      - django_db:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  django:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app:/home/worker
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  django_db:
+    external: true
