@@ -1,31 +1,33 @@
 version: '2'
 services:
-    db:
-        image:
-            postgres
-        restart:
-            always
-        environment:
-            POSTGRES_USER:
-                pythonist
-            POSTGRES_PASSWORD:
-                password
-            POSTGRES_DB:
-                mypyenv
-        ports:
-            - "5432"
-        container_name:
-            postgres-db
-        volumes:
-            - ./postgres-db:/var/lib/postgresql/data
-            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-    python:
-        build: .
-        volumes:
-            - ./workdir:/root/notebook/
-        ports:
-            - "8888:8888"
-        links:
-            - db
-        depends_on:
-            - db
+  db:
+    image:
+      postgres
+    restart:
+      always
+    environment:
+      POSTGRES_USER:
+        pythonist
+      POSTGRES_PASSWORD:
+        password
+      POSTGRES_DB:
+        mypyenv
+    ports:
+      - "5432"
+    volumes:
+      - mypyenv_db:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  python:
+    build: .
+    volumes:
+      - ./workdir:/root/notebook/
+    ports:
+      - "8888:8888"
+    links:
+      - db
+    depends_on:
+      - db
+
+volumes:
+  mypyenv_db:
+    external: true
