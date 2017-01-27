@@ -1,5 +1,8 @@
 # localDockerImages
 This repository contains my local docker images
+DBの永続化はvolumeコマンドを使う
+
+``docker volume create --name hogehoge``
 
 ## mypyenv
 - This Dockerfile is my python environment based on kyobad/anaconda3-alpine.

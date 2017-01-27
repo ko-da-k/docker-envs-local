@@ -9,6 +9,7 @@ services:
             - MYSQL_USER=cakephp
             - MYSQL_PASSWORD=secret
         volumes:
+            - cakephp_db:/var/lib/mysql
             - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     web:
         build: .
@@ -20,4 +21,6 @@ services:
             - "8765:8765"
         depends_on:
             - db
-
+volumes:
+  cakephp_db:
+    external: true

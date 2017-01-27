@@ -9,7 +9,7 @@ services:
       REDMINE_DB_MYSQL: db
       REDMINE_DB_PASSWORD: example
     volumes:
-        - ./redmine-data/redmine:/usr/src/redmine/files
+        - redmine_data/redmine:/usr/src/redmine/files
     depends_on:
       - db
     restart: always
@@ -23,3 +23,7 @@ services:
     volumes:
         - ./redmine-data/db:/var/lib/mysql
     restart: always
+
+volumes:
+  redmine_data:
+    external: true
