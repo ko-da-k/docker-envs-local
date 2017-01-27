@@ -48,3 +48,16 @@ django is a Web Framework
 and access
 
 ``localhost:5000``
+
+## wordpress
+WordPress is an online, open source website creation tool written in PHP.
+
+### HOW TO
+#### make project
+``docker-compose run web composer create-project --prefer-dist -n cakephp/app app``
+#### run server
+``docker-compose up``
+
+and access
+
+``localhost:8765``
