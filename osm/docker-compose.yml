@@ -2,7 +2,7 @@ version: '2'
 services:
   pgis_db:
     build:
-      .
+      post_gis/.
     restart:
       always
     environment:

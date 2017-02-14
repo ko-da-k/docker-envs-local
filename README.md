@@ -61,3 +61,6 @@ WordPress is an online, open source website creation tool written in PHP.
 and access
 
 ``localhost:8765``
+
+## osm
+Open Street Map sample and postgis db
