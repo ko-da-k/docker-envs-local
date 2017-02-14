@@ -1,0 +1,23 @@
+version: '2'
+services:
+  pgis_db:
+    build:
+      .
+    restart:
+      always
+    environment:
+      POSTGRES_USER:
+        user
+      POSTGRES_PASSWORD:
+        password
+      POSTGRES_DB:
+        pgis
+    ports:
+      - "5432"
+    volumes:
+      - pgis_db:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+volumes:
+  pgis_db:
+    external: true
