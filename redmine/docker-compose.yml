@@ -9,7 +9,7 @@ services:
       REDMINE_DB_MYSQL: db
       REDMINE_DB_PASSWORD: example
     volumes:
-        - redmine_data/redmine:/usr/src/redmine/files
+        - redmine_files:/usr/src/redmine/files
     depends_on:
       - db
     restart: always
@@ -21,9 +21,11 @@ services:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: redmine_db
     volumes:
-        - ./redmine-data/db:/var/lib/mysql
+        - redmine_db:/var/lib/mysql
     restart: always
 
 volumes:
-  redmine_data:
+  redmine_files:
+    external: true
+  redmine_db:
     external: true
