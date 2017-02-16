@@ -12,6 +12,10 @@ def index():
 def accessible_map():
     return render_template("accessible_map.html")
 
+@app.route("/mk")
+def marker_sample():
+    return render_template("marker_sample.html")
+
 
 if __name__ == "__main__":
     app.run()
