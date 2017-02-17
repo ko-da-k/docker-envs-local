@@ -19,7 +19,7 @@ services:
         - wordpress_db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: wordpress_db
+      MYSQL_DATABASE: wordpress
       MYSQL_USER: wp_user
       MYSQL_PASSWORD: password
       
