@@ -1,0 +1,48 @@
+version: '2'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    hostname: 'iskw-gitlab.com'
+    links:
+      - postgresql:postgresql
+      - redis:redis
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        postgresql['enable'] = false
+        gitlab_rails['db_username'] = "gitlab"
+        gitlab_rails['db_password'] = "gitlab"
+        gitlab_rails['db_host'] = "postgresql"
+        gitlab_rails['port'] = "5432"
+        gitlab_rails['db_database'] = "gitlabhq_production"
+        gitlab_rails['db_adapter'] = "postgresql"
+        gitlab_rails['db_encoding'] = "utf8"
+        redis['enable'] = false
+        gitlab_rails['redis_host'] = "redis"
+        gitlab_rails['redis_port'] = "6379"
+        external_url 'http://iskw-gitlab.com:30080' 
+        gitlab_rails['gitlab_shell_ssh_port']=30022
+    ports:
+      - "30080:30080"
+      - "30022:22"
+    volumes:
+      - /srv/gitlab/config:/etc/gitlab:rw
+      - /srv/gitlab/log:/var/log/gitlab:rw
+      - /srv/gitlab/data:/var/opt/gitlab:rw
+
+  postgresql:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: gitlab
+      POSTGRES_PASSWORD: gitlab
+      POSTGRES_DB: gitlabhq_production 
+    volumes:
+      - gitlab_db:/var/lib/postgresql/data:rw
+
+  redis:
+    image: redis
+    restart: always
+
+volumes: 
+  gitlab_db:
+    external: true
