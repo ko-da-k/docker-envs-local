@@ -1,0 +1,25 @@
+version: '2'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    hostname: 'localhost' 
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:30080' 
+        gitlab_rails['gitlab_shell_ssh_port']=30022
+    ports:
+      - "30080:30080"
+      - "30022:22"
+#    volumes:
+#      - /srv/gitlab/config:/etc/gitlab:rw
+#      - /srv/gitlab/log:/var/log/gitlab:rw
+#      - /srv/gitlab/data:/var/opt/gitlab:rw
+
+#volumes:
+#  gitlab_config:
+#    external: true
+#  gitlab_log:
+#    external: true
+#  gitlab_data:
+#    external: true
+
