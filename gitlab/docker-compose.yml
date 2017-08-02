@@ -2,6 +2,7 @@ version: '2'
 services:
   gitlab:
     image: gitlab/gitlab-ce:latest
+    # hostnameとexternal_urlをデプロイ先によって変えること
     hostname: 'localhost'
     links:
       - postgresql:postgresql
@@ -25,9 +26,9 @@ services:
       - "30080:30080"
       - "30022:22"
 #    volumes:
-#      - /srv/gitlab/config:/etc/gitlab:rw
-#      - /srv/gitlab/log:/var/log/gitlab:rw
-#      - /srv/gitlab/data:/var/opt/gitlab:rw
+#      - gitlab_config:/etc/gitlab:rw
+#      - gitlab_log:/var/log/gitlab:rw
+#      - gitlab_data:/var/opt/gitlab:rw
 
   postgresql:
     image: postgres
@@ -42,7 +43,17 @@ services:
   redis:
     image: redis
     restart: always
+#    volumes:
+#        - gitlab_redis:/data:rw
 
 #volumes: 
+#  gitlab_config:
+#    external: true
+#  gitlab_log:
+#    external: true
+#  gitlab_data:
+#    external: true
 #  gitlab_db:
+#    external: true
+#  gitlab_redis:
 #    external: true
