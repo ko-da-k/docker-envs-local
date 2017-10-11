@@ -4,7 +4,7 @@ DBの永続化はvolumeコマンドを使う
 
 ``docker volume create --name hogehoge``
 
-## mypyenv
+## mypyenv-alpine
 - This Dockerfile is my python environment based on kyobad/anaconda3-alpine.
 - docker-compose command builds jupyter notebook and postgresql containers.
 
@@ -14,6 +14,20 @@ DBの永続化はvolumeコマンドを使う
 and access
 
 ``localhost:8888``
+
+## datascience-conda
+- These Dockerfiles are python environment including Mecab.
+- Dockerfile
+  - is based on debian:latest and Anaconda3
+- Dockerfile.miniconda
+  - is based on debian:latest and Miniconda3
+- Dockerfile.continuum.anaconda
+  - is based on continuumio/anaconda3:latest
+- Dockerfile.continuum.miniconda
+  - is based on continuumio/miniconda3:latest
+
+#### HOW TO
+``docker build -f <filepath> . -t <tag>``
 
 ## cakephp
 cakephp and mysql

@@ -1,0 +1,22 @@
+FROM continuumio/miniconda3:latest
+
+MAINTAINER K.Kato
+
+# Install Mecab
+RUN apt-get install -y aptitude build-essential && \
+    aptitude install -y mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file&& \
+    git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git /tmp/mecab-ipadic-neologd && \
+    echo `mecab-config --dicdir` | xargs mkdir -p && \
+    cd /tmp/mecab-ipadic-neologd && \
+    ./bin/install-mecab-ipadic-neologd -n -y && \
+    cd / && \
+    rm -rf /tmp/mecab-ipadic-neologd
+
+# Install packages
+RUN conda update -y --all && \
+    conda install -y jupyter numpy scipy scikit-learn pandas matplotlib seaborn bokeh statsmodels tensorflow && \
+    pip install mecab-python3
+
+WORKDIR /root
+
+CMD [ "/bin/bash", "-c", "jupyter notebook --notebook-dir=$HOME --ip='*' --port=8888 --no-browser --allow-root" ]
