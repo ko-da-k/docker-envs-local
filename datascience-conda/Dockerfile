@@ -23,6 +23,6 @@ RUN apt-get update --fix-missing && \
     conda install -y tensorflow && \
     pip install mecab-python3
 
-WORKDIR /root
+WORKDIR /root/workspace
 
-CMD [ "/bin/bash", "-c", "jupyter notebook --notebook-dir=$HOME --ip='*' --port=8888 --no-browser  --allow-root" ]
+CMD [ "/bin/bash", "-c", "jupyter notebook --notebook-dir=/root/workspace --ip='*' --port=8888 --no-browser  --allow-root" ]
