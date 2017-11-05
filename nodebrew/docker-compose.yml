@@ -3,7 +3,7 @@ version: "2"
 services:
   app:
     build: .
-    container_name: geo-dashboard
+    container_name: nodebrew_app 
     volumes:
       - ./project/:$HOME/app
     ports:

@@ -13,9 +13,7 @@ RUN /bin/bash -c '\
     && nodebrew install-binary v8.8.1 \
     && nodebrew use v8.8.1 \
     && npm i -g npm@5.5.1 \
-    && npm i -g npm i -g @angular/cli@1.4.9\
     '
-
 
 ENV HOME=/home/appuser
 USER appuser
