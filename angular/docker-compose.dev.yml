@@ -2,10 +2,10 @@ version: "2"
 
 services:
   app:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    container_name: geo-dashboard-app
+    image: angular-yarn-alpine-dev
+    container_name: geo-dashboard-app-dev
+    volumes:
+      - ./project/:/root/app
     ports:
       - "4200:4200"
     command: sh -c "yarn && ng serve --host 0.0.0.0 --poll 2000"
