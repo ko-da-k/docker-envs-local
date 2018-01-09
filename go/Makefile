@@ -10,14 +10,14 @@ BUILDER_CMD := docker run --rm -it -e GOPATH=/go -v $(WORK_DIR):$(BUILDER_WORK_D
 MAIN := main
 
 setup:
-    docker build -t $(BUILDER_IMAGE) .
+	docker build -t $(BUILDER_IMAGE) .
 
 rebuild-image:
-    docker rmi $(BUILDER_IMAGE)
-    docker build -t $(BUILDER_IMAGE) .
+	docker rmi $(BUILDER_IMAGE)
+	docker build -t $(BUILDER_IMAGE) .
 
 attach:
-    $(BUILDER_CMD) sh
+	$(BUILDER_CMD) sh
 
 run:
 	$(BUILDER_CMD) run $(MAIN).go
@@ -28,5 +28,5 @@ fmt:
 dep:
 	$(BUILDER_CMD) dep ensure
 
-build:
+build-go:
 	$(BUILDER_CMD) -rm $(MAIN) && go build $(MAIN).go
