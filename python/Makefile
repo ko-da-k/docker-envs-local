@@ -1,17 +1,24 @@
 .PHONY: build run docker/*
 
 WORK_DIR := $(CURDIR)
+LOG_DIR := $(CURDIR)
 
 BUILDER_IMAGE := python:kodai
 BUILDER_WORK_DIR := /root
-BUILDER_CMD := docker run --rm -it $(WORK_DIR)/:$(BUILDER_WORK_DIR) -w $(BUILDER_WORK_DIR) -p 6006:6006 -p 8888:8888 $(BUILDER_IMAGE) bash
+BUILDER_CMD := docker run --rm -it $(WORK_DIR)/:$(BUILDER_WORK_DIR) -w $(BUILDER_WORK_DIR) -p 6006:6006 -p 8888:8888 $(BUILDER_IMAGE)
 
-build:
+setup:
 	docker build -t $(BUILDER_IMAGE) .
 
-rebuild:
+rebuild-image:
 	docker rmi $(BUILDER_IMAGE) .
 	docker build -t $(BUILDER_IMAGE) .
 
-run:
-	$(BUILDER_CMD)
+attach:
+	$(BUILDER_CMD) bash
+
+jupyter:
+	$(BUILDER_CMD) jupyter notebook --ip 0.0.0.0 --no-browser --port 8888
+
+tensorboard:
+	$(BUILDER_CMD) tensorboard --logdir=$(LOGDIR)
