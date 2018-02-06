@@ -11,7 +11,7 @@ setup:
 	docker build -t $(BUILDER_IMAGE) .
 
 rebuild-image:
-	docker rmi $(BUILDER_IMAGE) .
+	docker rmi $(BUILDER_IMAGE)
 	docker build -t $(BUILDER_IMAGE) .
 
 attach:
