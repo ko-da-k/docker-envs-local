@@ -9,4 +9,6 @@ RUN apt-get update \
     && pip3 install --upgrade tensorflow \
     && jupyter nbextensions_configurator enable --user \
     && git clone https://github.com/lambdalisue/jupyter-vim-binding $(jupyter --data-dir)/nbextensions/vim_binding \
-    && jt -t monokai -T -N -altmd
+    && jt -t monokai -T -N -altmd -vim
+
+WORKDIR /root/workspace

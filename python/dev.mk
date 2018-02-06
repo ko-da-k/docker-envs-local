@@ -4,7 +4,7 @@ WORK_DIR := $(CURDIR)
 LOG_DIR := $(CURDIR)
 
 BUILDER_IMAGE := python:kodai
-BUILDER_WORK_DIR := /root
+BUILDER_WORK_DIR := /root/workspace
 BUILDER_CMD := docker run --rm -it -v $(WORK_DIR):$(BUILDER_WORK_DIR) -w $(BUILDER_WORK_DIR) -p 6006:6006 -p 8888:8888 $(BUILDER_IMAGE)
 
 setup:
