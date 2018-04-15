@@ -1,6 +1,7 @@
-# local-docker-envs
+# docker-envs-local
 This repository contains my local docker images
-DBの永続化はvolumeコマンドを使う
+
+## How to create volumes
 
 ``docker volume create --name hogehoge``
 
