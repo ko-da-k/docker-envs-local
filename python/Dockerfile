@@ -14,6 +14,8 @@ RUN apt-get update \
         scikit-learn \
         jupyter_nbextensions_configurator \
         jupyterthemes \
+        fbprophet \
+        lightgbm \
     ## Install tensorflow later because of dependencies.
     && pip3 install --upgrade tensorflow \ 
     && jupyter nbextensions_configurator enable --user \
