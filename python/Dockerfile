@@ -16,10 +16,18 @@ RUN apt-get update \
         jupyterthemes \
         fbprophet \
         lightgbm \
+        pandas_profiling \
+        hyperopt \
     ## Install tensorflow later because of dependencies.
     && pip3 install --upgrade tensorflow \ 
     && jupyter nbextensions_configurator enable --user \
     && git clone https://github.com/lambdalisue/jupyter-vim-binding $(jupyter --data-dir)/nbextensions/vim_binding \
-    && jt -t monokai -T -N -altmd -vim
+    && useradd analyst
 
-WORKDIR /root/workspace
+USER analyst
+
+RUN jupyter notebook --generate-config
+
+COPY --chown=analyst:analyst jupyter_notebook_config.py $HOME/.jupyter/jupyter_notebook_config.py
+
+WORKDIR $HOME/workspace
